@@ -1,0 +1,31 @@
+<settings-screen>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="pull-left" ng-if="currentUser.hasPermission('admin')">
+        <a ng-click="newGroup()" class="btn btn-default"><i class="fa fa-plus"></i> New Group</a>
+      </p>
+      <!-- Search option in group -->
+      <div class="pull-right" style="margin-bottom: 9px; margin-top: -5px;">
+        <input type="text" class="form-control" placeholder="Search..."
+        autofocus ng-model="searchTerm"
+         ng-model-options="{ allowInvalid: true, debounce: 200 }"
+          ng-change="search(searchTerm)" />
+      </div>
+      <table class="table table-border table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in groups.getPageRows()">
+            <td>
+              <a href="groups/{{row.id}}">{{row.name}}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <paginator paginator="groups"></paginator>
+    </div>
+  </div>
+</settings-screen>
